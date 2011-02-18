@@ -11,5 +11,5 @@ function main() {
 	image.onload = function() {
 		renderSystem.render( [ position ], [ image ] );
 	}
-	image.src = "black.png";
+	image.src = "black-hole.png";
 }
