@@ -4,9 +4,17 @@ var tick = 20;
 var renderSystem = null;
 
 var position1 = null;
-var position2 = null;
 
 var images = null;
+
+var projectile = {
+	position: {
+		x: 50,
+		y: 50
+	},
+	
+	imagePath: "projectile.png"
+}
 
 function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
@@ -15,13 +23,10 @@ function init() {
 		x: 268,
 		y: 268
 	};
-	position2 = {
-		x: 50,
-		y: 50
-	};
 	
-	onLoadDo( [ "black-hole.png", "projectile.png" ], function( loadedImages ) {
+	onLoadDo( [ "black-hole.png", projectile.imagePath ], function( loadedImages ) {
 		images = loadedImages;
+		projectile.image = loadedImages[ 1 ];
 		setTimeout( main, tick );
 	} );
 }
@@ -49,9 +54,9 @@ function onLoadDo( imagePaths, fn ) {
 }
 
 function main() {
-	position2.x += 50 * tick / 1000;
-	position2.y += 50 * tick / 1000;
-	renderSystem.render( [ position1, position2 ], images );
+	projectile.position.x += 50 * tick / 1000;
+	projectile.position.y += 50 * tick / 1000;
+	renderSystem.render( [ position1, projectile.position ], [ images[0], projectile.image ] );
 	
 	setTimeout( main, tick );
 }
