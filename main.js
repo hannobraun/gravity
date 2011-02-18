@@ -51,6 +51,8 @@ function onLoadDo( imagePaths, fn ) {
 }
 
 function main() {
+	position2.x += 50 * tick / 1000;
+	position2.y += 50 * tick / 1000;
 	renderSystem.render( [ position1, position2 ], images );
 	
 	setTimeout( main, 20 );
