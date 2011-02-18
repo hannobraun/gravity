@@ -3,8 +3,8 @@ function main() {
 	var renderSystem = new RenderSystem( "canvas", 600, 600 );
 	
 	var position1 = {
-		x: 284,
-		y: 284
+		x: 268,
+		y: 268
 	};
 	var position2 = {
 		x: 50,
