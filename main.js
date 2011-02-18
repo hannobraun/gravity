@@ -53,5 +53,5 @@ function main() {
 	position2.y += 50 * tick / 1000;
 	renderSystem.render( [ position1, position2 ], images );
 	
-	setTimeout( main, 20 );
+	setTimeout( main, tick );
 }
