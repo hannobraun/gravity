@@ -3,6 +3,8 @@ var tick = 20;
 
 var renderSystem = null;
 
+
+
 var projectile = {
 	position: {
 		x: 50,
@@ -19,6 +21,10 @@ var blackHole = {
 	
 	imagePath: "black-hole.png"
 }
+
+var entities = [ projectile, blackHole ]
+
+
 
 function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
