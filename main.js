@@ -24,8 +24,6 @@ function init() {
 		images = loadedImages;
 		setTimeout( main, tick );
 	} );
-	
-	
 }
 
 function onLoadDo( imagePaths, fn ) {
