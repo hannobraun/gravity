@@ -8,6 +8,8 @@ function RenderSystem( canvasId, width, height ) {
 }
 
 RenderSystem.prototype.render = function( positions, images ) {
+	this.context.clearRect( 0, 0, this.canvas.width, this.canvas.height );
+
 	for ( var i = 0; i < positions.length; i++ ) {
 		var pos = positions[ i ];
 		var image = images[ i ];
