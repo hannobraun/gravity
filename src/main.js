@@ -22,8 +22,6 @@ var blackHole = {
 	imagePath: "black-hole.png"
 }
 
-var entities = [ projectile, blackHole ]
-
 
 
 function init() {
