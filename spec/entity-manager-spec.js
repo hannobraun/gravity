@@ -23,6 +23,7 @@ describe( "EntityManager", function() {
 		
 		var result = entityManager.componentsByType( "component1" );
 		
+		expect( result.entities ).toEqual( [ "entity1", "entity2" ] );
 		expect( result.components ).toEqual( [ { x: "x1" }, { x: "x2" } ] );
 	} );
 } );
