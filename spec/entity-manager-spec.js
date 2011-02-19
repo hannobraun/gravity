@@ -21,8 +21,8 @@ describe( "EntityManager", function() {
 			}
 		} );
 		
-		var components = entityManager.componentsByType( "component1" );
+		var result = entityManager.componentsByType( "component1" );
 		
-		expect( components ).toEqual( [ { x: "x1" }, { x: "x2" } ] );
+		expect( result.components ).toEqual( [ { x: "x1" }, { x: "x2" } ] );
 	} );
 } );

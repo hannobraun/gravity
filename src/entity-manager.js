@@ -8,7 +8,11 @@ EntityManager.prototype.defineEntity = function( entityName, entity ) {
 }
 
 EntityManager.prototype.componentsByType = function( componentType ) {
-	return this.entities.map( function( entity ) {
+	var componentsOfThisType = this.entities.map( function( entity ) {
 		return entity[ componentType ];
 	} );
+	
+	return {
+		components: componentsOfThisType
+	};
 }
