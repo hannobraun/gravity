@@ -26,8 +26,13 @@ var blackHole = {
 
 function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
+	var entityManager = new EntityManager();
 	
-	onLoadDo( [ projectile.imagePath, blackHole.imagePath ], function( loadedImages ) {
+	entityManager.defineEntity( "projectile", projectile );
+	entityManager.defineEntity( "blackHole", blackHole );
+	
+	var imagePaths = entityManager.componentsByType( "imagePath" );
+	onLoadDo( imagePaths, function( loadedImages ) {
 		projectile.image = loadedImages[ 0 ];
 		blackHole.image = loadedImages[ 1 ];
 		main();
