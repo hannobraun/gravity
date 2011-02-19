@@ -30,7 +30,7 @@ function init() {
 	onLoadDo( [ projectile.imagePath, blackHole.imagePath ], function( loadedImages ) {
 		projectile.image = loadedImages[ 0 ];
 		blackHole.image = loadedImages[ 1 ];
-		setTimeout( main, tick );
+		main();
 	} );
 }
 
