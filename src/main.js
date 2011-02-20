@@ -7,36 +7,31 @@ var renderSystem = null;
 
 
 
-var projectile = {
-	position: {
-		x: 50,
-		y: 50
-	},
-	
-	speed: {
-		x: 50,
-		y: 50
-	},
-	
-	imagePath: "projectile.png"
-}
-var blackHole = {
-	position: {
-		x: 268,
-		y: 268
-	},
-	
-	imagePath: "black-hole.png"
-}
-
-
-
 function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
 	entityManager = new EntityManager();
 	
-	entityManager.defineEntity( "projectile", projectile );
-	entityManager.defineEntity( "blackHole", blackHole );
+	entityManager.defineEntity( "projectile", {
+		position: {
+			x: 50,
+			y: 50
+		},
+	
+		speed: {
+			x: 50,
+			y: 50
+		},
+	
+		imagePath: "projectile.png"
+	} );
+	entityManager.defineEntity( "blackHole", {
+		position: {
+			x: 268,
+			y: 268
+		},
+		
+		imagePath: "black-hole.png"
+	} );
 	
 	var imagePaths = entityManager.componentsByType( [ "imagePath" ] );
 	onLoadDo( imagePaths.components[ "imagePath" ], function( loadedImages ) {
