@@ -54,6 +54,16 @@ function init() {
 		
 		imagePath: "gfx/black-hole.png"
 	} );
+	/*entityManager.defineEntity( "blackHole2", {
+		position: new Vector( 500, 250 ),
+		
+		gravitySource: {
+			//mass: 1000000
+			mass: 10000000000000000
+		},
+		
+		imagePath: "gfx/black-hole.png"
+	} );*/
 	
 	var imagePaths = entityManager.componentsByType( [ "imagePath" ] );
 	loadImagesAndDo( imagePaths.components[ "imagePath" ], function( loadedImages ) {
