@@ -16,22 +16,30 @@ EntityManager.prototype.addComponentToEntity = function( componentName, componen
 	entity[ componentName ] = component;
 }
 
-EntityManager.prototype.componentsByType = function( componentType ) {
-	var entitiesWithThisComponent = this.entities.filter( function( entity ) {
-		return entity[ componentType ];
+EntityManager.prototype.componentsByType = function( componentTypes ) {
+	var entitiesWithTheseComponents = this.entities.filter( function( entity ) {
+		var hasAllComponents = true;
+		for ( var i = 0; i < componentTypes.length; i++ ) {
+			if ( !entity[ componentTypes[ i ] ] ) {
+				hasAllComponents = false;
+			}
+		}
+		return hasAllComponents;
 	} );
 	
-	var entityIds = entitiesWithThisComponent.map( function( entity ) {
+	var entityIds = entitiesWithTheseComponents.map( function( entity ) {
 		return entity.id;
 	} );
 
-	var componentsOfThisType = {};
-	componentsOfThisType[ componentType ] = entitiesWithThisComponent.map( function( entity ) {
-		return entity[ componentType ];
-	} );
+	var components = {};
+	for ( var i = 0; i < componentTypes.length; i++ ) {
+		components[ componentTypes[ i ] ] = entitiesWithTheseComponents.map( function( entity ) {
+			return entity[ componentTypes[ i ] ];	
+		} );
+	}
 	
 	return {
 		entities: entityIds,
-		components: componentsOfThisType
+		components: components
 	};
 }

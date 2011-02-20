@@ -60,4 +60,18 @@ describe( "EntityManager", function() {
 		expect( result.entities ).toEqual( [ "entity1" ] );
 		expect( result.components[ "componentZ" ] ).toEqual( [ newComponent ] );
 	} );
+	
+	it( "should only return those entities that have all of the specified components.", function() {
+		entityManager.defineEntity( "entity3", {
+			componentX: {
+				x: "x3"
+			}
+		} );
+		
+		var result = entityManager.componentsByType( [  "componentX", "componentY" ] );
+		
+		expect( result.entities ).toEqual( [ "entity1", "entity2" ] );
+		expect( result.components[ "componentX" ] ).toEqual( [ componentX1, componentX2 ] );
+		expect( result.components[ "componentY" ] ).toEqual( [ componentY1, componentY2 ] );
+	} );
 } );
