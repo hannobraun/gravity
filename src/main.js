@@ -11,6 +11,11 @@ var projectile = {
 		y: 50
 	},
 	
+	speed: {
+		x: 50,
+		y: 50
+	},
+	
 	imagePath: "projectile.png"
 }
 var blackHole = {
@@ -63,8 +68,8 @@ function onLoadDo( imagePaths, fn ) {
 }
 
 function main() {
-	projectile.position.x += 50 * tick / 1000;
-	projectile.position.y += 50 * tick / 1000;
+	projectile.position.x += projectile.speed.x * tick / 1000;
+	projectile.position.y += projectile.speed.y * tick / 1000;
 	renderSystem.render( [ projectile.position, blackHole.position ], [ projectile.image, blackHole.image ] );
 	
 	setTimeout( main, tick );
