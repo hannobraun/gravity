@@ -8,6 +8,14 @@ EntityManager.prototype.defineEntity = function( entityName, entity ) {
 	this.entities.push( entity );
 }
 
+EntityManager.prototype.addComponentToEntity = function( componentName, component, entityId ) {
+	var entity = this.entities.filter( function( entity ) {
+		return entity.id == entityId;
+	} )[ 0 ];
+	
+	entity[ componentName ] = component;
+}
+
 EntityManager.prototype.componentsByType = function( componentType ) {
 	var entitiesWithThisComponent = this.entities.filter( function( entity ) {
 		return entity[ componentType ];
