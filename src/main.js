@@ -76,10 +76,3 @@ function main() {
 	
 	setTimeout( main, tick );
 }
-
-function integratePosition( positions, speeds ) {
-	for ( var i = 0; i < positions.length; i++ ) {
-		positions[ i ].x += speeds[ i ].x * tick / 1000;
-		positions[ i ].y += speeds[ i ].y * tick / 1000;
-	}
-}
