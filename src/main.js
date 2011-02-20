@@ -15,22 +15,21 @@ function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
 	
 	entityManager.defineEntity( "projectile", {
-		position: {
-			x: 50,
-			y: 50
-		},
-	
-		speed: {
-			x: 50,
-			y: 50
+		position: new Vector( 200, 200 ),
+		speed: new Vector( 50, -50 ),
+		
+		affectedByGravity: {
+			mass: 10000000000000000000000000000
 		},
 	
 		imagePath: "gfx/projectile.png"
 	} );
 	entityManager.defineEntity( "blackHole", {
-		position: {
-			x: 268,
-			y: 268
+		position: new Vector( 268, 268 ),
+		
+		gravitySource: {
+			//mass: 1000000
+			mass: 10000000000000000
 		},
 		
 		imagePath: "gfx/black-hole.png"
@@ -46,6 +45,16 @@ function init() {
 }
 
 function main() {
+	var positionAndGravitySource = entityManager.componentsByType( [ "position", "gravitySource" ] );
+	var positionAndSpeedAndAffectedByGravity = entityManager.componentsByType( [ "position", "speed", "affectedByGravity" ] );
+	physicsSystem.integrateSpeed(
+		positionAndGravitySource.components[ "position" ],
+		positionAndGravitySource.components[ "gravitySource" ],
+		positionAndSpeedAndAffectedByGravity.components[ "position" ],
+		positionAndSpeedAndAffectedByGravity.components[ "speed" ],
+		positionAndSpeedAndAffectedByGravity.components[ "affectedByGravity" ]
+	);
+
 	var positionsAndSpeeds = entityManager.componentsByType( [ "position", "speed" ] );
 	physicsSystem.integratePosition( positionsAndSpeeds.components[ "position" ], positionsAndSpeeds.components[ "speed" ] );
 	
