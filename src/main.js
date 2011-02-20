@@ -25,7 +25,7 @@ function init() {
 			y: 50
 		},
 	
-		imagePath: "projectile.png"
+		imagePath: "gfx/projectile.png"
 	} );
 	entityManager.defineEntity( "blackHole", {
 		position: {
@@ -33,7 +33,7 @@ function init() {
 			y: 268
 		},
 		
-		imagePath: "black-hole.png"
+		imagePath: "gfx/black-hole.png"
 	} );
 	
 	var imagePaths = entityManager.componentsByType( [ "imagePath" ] );
