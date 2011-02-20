@@ -17,10 +17,9 @@ EntityManager.prototype.addComponentToEntity = function( componentName, componen
 }
 
 EntityManager.prototype.componentsByType = function( componentTypes ) {
-	var entitiesWithTheseComponents = this._findEntitiesWithTheseComponents( componentTypes );
-	var entityIds = this._extractIdsFromEntities( entitiesWithTheseComponents );
-
-	var components = this._extractComponentsFromEntities( componentTypes, entitiesWithTheseComponents );
+	var entitiesWithTheseComponentTypes = this._findEntitiesWithTheseComponents( componentTypes );
+	var entityIds = this._extractIdsFromEntities( entitiesWithTheseComponentTypes );
+	var components = this._extractComponentsFromEntities( componentTypes, entitiesWithTheseComponentTypes );
 	
 	return {
 		entities: entityIds,
@@ -28,7 +27,7 @@ EntityManager.prototype.componentsByType = function( componentTypes ) {
 	};
 }
 
-EntityManager.prototype._findEntitiesWithTheseComponents( componentTypes ) {
+EntityManager.prototype._findEntitiesWithTheseComponents = function( componentTypes ) {
 	return this.entities.filter( function( entity ) {
 		var hasAllComponents = true;
 		for ( var i = 0; i < componentTypes.length; i++ ) {
@@ -40,13 +39,13 @@ EntityManager.prototype._findEntitiesWithTheseComponents( componentTypes ) {
 	} );
 }
 
-EntityManager.prototype._extractIdsFromEntities( entities ) {
-	return entitiesWithTheseComponents.map( function( entity ) {
+EntityManager.prototype._extractIdsFromEntities = function( entities ) {
+	return entities.map( function( entity ) {
 		return entity.id;
 	} );
 }
 
-EntityManager.prototype._extractComponentsFromEntities( componentTypes, entities ) {
+EntityManager.prototype._extractComponentsFromEntities = function( componentTypes, entities ) {
 	var components = {};
 	for ( var i = 0; i < componentTypes.length; i++ ) {
 		components[ componentTypes[ i ] ] = entities.map( function( entity ) {
