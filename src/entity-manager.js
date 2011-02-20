@@ -25,7 +25,8 @@ EntityManager.prototype.componentsByType = function( componentType ) {
 		return entity.id;
 	} );
 
-	var componentsOfThisType = entitiesWithThisComponent.map( function( entity ) {
+	var componentsOfThisType = {};
+	componentsOfThisType[ componentType ] = entitiesWithThisComponent.map( function( entity ) {
 		return entity[ componentType ];
 	} );
 	
