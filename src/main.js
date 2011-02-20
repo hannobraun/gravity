@@ -70,11 +70,17 @@ function onLoadDo( imagePaths, fn ) {
 }
 
 function main() {
-	projectile.position.x += projectile.speed.x * tick / 1000;
-	projectile.position.y += projectile.speed.y * tick / 1000;
+	integratePosition( [ projectile.position ], [ projectile.speed ] );
 	
 	var positionsAndImages = entityManager.componentsByType( [ "position", "image" ] );
 	renderSystem.render( positionsAndImages.components[ "position" ], positionsAndImages.components[ "image" ] );
 	
 	setTimeout( main, tick );
+}
+
+function integratePosition( positions, speeds ) {
+	for ( var i = 0; i < positions.length; i++ ) {
+		positions[ i ].x += speeds[ i ].x * tick / 1000;
+		positions[ i ].y += speeds[ i ].y * tick / 1000;
+	}
 }
