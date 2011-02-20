@@ -19,9 +19,7 @@ EntityManager.prototype.addComponentToEntity = function( componentName, componen
 EntityManager.prototype.componentsByType = function( componentTypes ) {
 	var entitiesWithTheseComponents = this._findEntitiesWithTheseComponents( componentTypes );
 	
-	var entityIds = entitiesWithTheseComponents.map( function( entity ) {
-		return entity.id;
-	} );
+	var entityIds = this._extractIdsFromEntities( entitiesWithTheseComponents );
 
 	var components = {};
 	for ( var i = 0; i < componentTypes.length; i++ ) {
@@ -45,5 +43,11 @@ EntityManager.prototype._findEntitiesWithTheseComponents( componentTypes ) {
 			}
 		}
 		return hasAllComponents;
+	} );
+}
+
+EntityManager.prototype._extractIdsFromEntities( entities ) {
+	return entitiesWithTheseComponents.map( function( entity ) {
+		return entity.id;
 	} );
 }
