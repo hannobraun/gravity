@@ -3,13 +3,16 @@ var tick = 20;
 
 var entityManager = null;
 
+var physicsSystem = null;
 var renderSystem = null;
 
 
 
 function init() {
-	renderSystem = new RenderSystem( "canvas", 600, 600 );
 	entityManager = new EntityManager();
+	
+	physicsSystem = new PhysicsSystem( tick );
+	renderSystem = new RenderSystem( "canvas", 600, 600 );
 	
 	entityManager.defineEntity( "projectile", {
 		position: {
@@ -66,7 +69,7 @@ function onLoadDo( imagePaths, fn ) {
 
 function main() {
 	var positionsAndSpeeds = entityManager.componentsByType( [ "position", "speed" ] );
-	integratePosition( positionsAndSpeeds.components[ "position" ], positionsAndSpeeds.components[ "speed" ] );
+	physicsSystem.integratePosition( positionsAndSpeeds.components[ "position" ], positionsAndSpeeds.components[ "speed" ] );
 	
 	var positionsAndImages = entityManager.componentsByType( [ "position", "image" ] );
 	renderSystem.render( positionsAndImages.components[ "position" ], positionsAndImages.components[ "image" ] );
