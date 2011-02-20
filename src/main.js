@@ -36,7 +36,7 @@ function init() {
 	entityManager.defineEntity( "projectile", projectile );
 	entityManager.defineEntity( "blackHole", blackHole );
 	
-	var imagePaths = entityManager.componentsByType( "imagePath" );
+	var imagePaths = entityManager.componentsByType( [ "imagePath" ] );
 	onLoadDo( imagePaths.components, function( loadedImages ) {
 		for ( var i = 0; i < imagePaths.entities.length; i++ ) {
 			entityManager.addComponentToEntity( "image", loadedImages[ i ], imagePaths.entities[ i ] );

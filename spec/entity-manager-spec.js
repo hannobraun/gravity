@@ -30,7 +30,7 @@ describe( "EntityManager", function() {
 	} );
 
 	it( "should return all components of a specific type.", function () {
-		var result = entityManager.componentsByType( "componentX" );
+		var result = entityManager.componentsByType( [ "componentX" ] );
 		
 		expect( result.entities ).toEqual( [ "entity1", "entity2" ] );
 		expect( result.components ).toEqual( [ componentX1, componentX2 ] );
@@ -43,7 +43,7 @@ describe( "EntityManager", function() {
 			}
 		} );
 		
-		var result = entityManager.componentsByType( "componentX" );
+		var result = entityManager.componentsByType( [ "componentX" ] );
 		
 		expect( result.entities ).toEqual( [ "entity1", "entity2" ] );
 		expect( result.components ).toEqual( [ componentX1, componentX2 ] );
@@ -55,7 +55,7 @@ describe( "EntityManager", function() {
 		}
 		entityManager.addComponentToEntity( "component3", newComponent, "entity1" );
 		
-		var result = entityManager.componentsByType( "component3" );
+		var result = entityManager.componentsByType( [ "component3" ] );
 		
 		expect( result.entities ).toEqual( [ "entity1" ] );
 		expect( result.components ).toEqual( [ newComponent ] );
