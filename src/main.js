@@ -33,8 +33,9 @@ function init() {
 	
 	var imagePaths = entityManager.componentsByType( "imagePath" );
 	onLoadDo( imagePaths.components, function( loadedImages ) {
-		projectile.image = loadedImages[ 0 ];
-		blackHole.image = loadedImages[ 1 ];
+		for ( var i = 0; i < imagePaths.entities.length; i++ ) {
+			entityManager.addComponentToEntity( "image", loadedImages[ i ], imagePaths.entities[ i ] );
+		}
 		main();
 	} );
 }
