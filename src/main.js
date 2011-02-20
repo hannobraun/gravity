@@ -24,6 +24,26 @@ function init() {
 	
 		imagePath: "gfx/projectile.png"
 	} );
+	entityManager.defineEntity( "projectile2", {
+		position: new Vector( 150, 150 ),
+		speed: new Vector( 50, -50 ),
+		
+		affectedByGravity: {
+			mass: 10000000000000000000000000000
+		},
+	
+		imagePath: "gfx/projectile.png"
+	} );
+	entityManager.defineEntity( "projectile3", {
+		position: new Vector( 240, 240 ),
+		speed: new Vector( -60, 60 ),
+		
+		affectedByGravity: {
+			mass: 10000000000000000000000000000
+		},
+	
+		imagePath: "gfx/projectile.png"
+	} );
 	entityManager.defineEntity( "blackHole", {
 		position: new Vector( 268, 268 ),
 		
