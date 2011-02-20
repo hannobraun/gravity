@@ -70,7 +70,8 @@ function onLoadDo( imagePaths, fn ) {
 }
 
 function main() {
-	integratePosition( [ projectile.position ], [ projectile.speed ] );
+	var positionsAndSpeeds = entityManager.componentsByType( [ "position", "speed" ] );
+	integratePosition( positionsAndSpeeds.components[ "position" ], positionsAndSpeeds.components[ "speed" ] );
 	
 	var positionsAndImages = entityManager.componentsByType( [ "position", "image" ] );
 	renderSystem.render( positionsAndImages.components[ "position" ], positionsAndImages.components[ "image" ] );
