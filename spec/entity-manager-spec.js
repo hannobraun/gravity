@@ -46,7 +46,7 @@ describe( "EntityManager", function() {
 		var result = entityManager.componentsByType( "componentX" );
 		
 		expect( result.entities ).toEqual( [ "entity1", "entity2" ] );
-		expect( result.components ).toEqual( [ { x: "x1" }, { x: "x2" } ] );
+		expect( result.components ).toEqual( [ componentX1, componentX2 ] );
 	} );
 	
 	it( "should allow for adding a component to an entity.", function() {
