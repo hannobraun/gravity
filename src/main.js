@@ -1,6 +1,8 @@
 
 var tick = 20;
 
+var entityManager = null;
+
 var renderSystem = null;
 
 
@@ -31,7 +33,7 @@ var blackHole = {
 
 function init() {
 	renderSystem = new RenderSystem( "canvas", 600, 600 );
-	var entityManager = new EntityManager();
+	entityManager = new EntityManager();
 	
 	entityManager.defineEntity( "projectile", projectile );
 	entityManager.defineEntity( "blackHole", blackHole );
@@ -70,7 +72,9 @@ function onLoadDo( imagePaths, fn ) {
 function main() {
 	projectile.position.x += projectile.speed.x * tick / 1000;
 	projectile.position.y += projectile.speed.y * tick / 1000;
-	renderSystem.render( [ projectile.position, blackHole.position ], [ projectile.image, blackHole.image ] );
+	
+	var positionsAndImages = entityManager.componentsByType( [ "position", "image" ] );
+	renderSystem.render( positionsAndImages.components[ "position" ], positionsAndImages.components[ "image" ] );
 	
 	setTimeout( main, tick );
 }
